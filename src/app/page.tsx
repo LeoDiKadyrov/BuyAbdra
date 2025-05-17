@@ -1,103 +1,133 @@
+'use client';
+
+import { useState } from "react";
 import Image from "next/image";
+import OfferModal from "./components/OfferModal";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [isOfferOpen, setIsOfferOpen] = useState(false);
+  console.log("isOfferOpen:", isOfferOpen);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-purple-900 via-black to-purple-900 text-white relative">
+      {/* Decorative elements */}
+      <div className="absolute overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,215,0,0.1),transparent_50%)]"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-red-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="text-center">
+          {/* Decorative crown */}
+          <div className="mb-8 relative">
+            <div className="text-8xl mb-4">👑</div>
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-yellow-400/20 rounded-full blur-2xl"></div>
+          </div>
+
+          <h1 className="text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 animate-gradient-x font-burned">
+            КУРС "КАК СТАТЬ АБДРОЙ" 🧠
+          </h1>
+          <p className="text-3xl mb-12 text-yellow-300 font-bold drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] font-title">
+            ЕДИНСТВЕННЫЙ КУРС, КОТОРЫЙ НАУЧИТ ВАС БЫТЬ НАСТОЛЬКО ГЛУПЫМ, ЧТО ВЫ СТАНЕТЕ МИЛЛИОНЕРОМ!
+          </p>
+          
+          {/* Price Section with 3D effect */}
+          <div className="bg-gradient-to-br from-black/80 to-purple-900/80 p-8 rounded-2xl mb-16 transform hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/30">
+            <div className="text-5xl font-bold text-red-500 mb-4 drop-shadow-[0_0_10px_rgba(255,0,0,0.5)] font-glitch">
+              БЫЛА ЦЕНА: 1 РУБЛЬ
+            </div>
+            <div className="text-7xl font-bold text-green-500 mb-4 drop-shadow-[0_0_10px_rgba(0,255,0,0.5)] font-glitch">
+              СЕЙЧАС: 10,000 РУБЛЕЙ
+            </div>
+            <div className="text-4xl text-yellow-400 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] font-vinyl">
+              +10,000% К ПРИБЫЛИ! 🚀
+            </div>
+          </div>
+
+          {/* Features with hover effects */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-gradient-to-br from-black/50 to-purple-900/50 p-8 rounded-xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+              <div className="text-6xl mb-4">🤔</div>
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4 font-glitch">МОДУЛЬ 1</h3>
+              <p className="text-lg font-title">Как забывать всё, что вы только что прочитали</p>
+            </div>
+            <div className="bg-gradient-to-br from-black/50 to-purple-900/50 p-8 rounded-xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+              <div className="text-6xl mb-4">❓</div>
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4 font-glitch">МОДУЛЬ 2</h3>
+              <p className="text-lg font-title">Искусство задавать глупые вопросы</p>
+            </div>
+            <div className="bg-gradient-to-br from-black/50 to-purple-900/50 p-8 rounded-xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+              <div className="text-6xl mb-4">😎</div>
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4 font-glitch">МОДУЛЬ 3</h3>
+              <p className="text-lg font-title">Как делать вид, что вы всё понимаете</p>
+            </div>
+          </div>
+
+          {/* CTA Button with enhanced effects */}
+          <a 
+            href="https://t.me/abdraebuchii" 
+            target="_blank" 
             rel="noopener noreferrer"
+            className="inline-block bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 text-black text-3xl font-bold py-6 px-16 rounded-full hover:scale-110 transition-all duration-300 shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:shadow-[0_0_50px_rgba(255,215,0,0.8)] animate-gradient-x font-title cursor-pointer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            КУПИТЬ СЕЙЧАС И СТАТЬ АБДРОЙ! 🚀
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          {/* Offer Button */}
+          <button 
+            onClick={() => setIsOfferOpen(true)}
+            className="mt-8 bg-gradient-to-r from-purple-500 via-red-500 to-purple-500 text-white text-2xl font-bold py-4 px-8 rounded-full hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(128,0,128,0.5)] hover:shadow-[0_0_50px_rgba(128,0,128,0.8)] animate-gradient-x font-glitch cursor-pointer"
           >
-            Read our docs
-          </a>
+            ЧИТАТЬ ОФЕРТУ 📜
+          </button>
+
+          {/* Testimonials with enhanced design */}
+          <div className="mt-24">
+            <h2 className="text-5xl font-bold mb-12 text-yellow-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] font-vinyl">ОТЗЫВЫ НАШИХ АБДР:</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gradient-to-br from-black/50 to-purple-900/50 p-8 rounded-xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+                <div className="text-6xl mb-4">🤪</div>
+                <p className="text-xl testimonial-text">"Пасле курса я забыл как пальзоваца дверью. Тепере я милионер! Ашыпок больше нету!"</p>
+                <p className="text-yellow-400 mt-4 text-lg testimonial-author">- Иван, бывший инжынер</p>
+              </div>
+              <div className="bg-gradient-to-br from-black/50 to-purple-900/50 p-8 rounded-xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+                <div className="text-6xl mb-4">🤯</div>
+                <p className="text-xl testimonial-text">"Я настолька глупый теперь, што дажэ не памню, как пратратил свой первый милион! Ашыпки больше нет!"</p>
+                <p className="text-yellow-400 mt-4 text-lg testimonial-author">- Мария, экс-програмист</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Guarantee with enhanced design */}
+          <div className="mt-24 bg-gradient-to-br from-black/50 to-purple-900/50 p-10 rounded-2xl transform hover:scale-105 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] border border-yellow-400/20">
+            <div className="text-6xl mb-6">✨</div>
+            <h2 className="text-5xl font-bold mb-6 text-yellow-300 drop-shadow-[0_0_10px_rgba(255,215,0,0.5)] font-vinyl">НАША ГАРАНТИЯ:</h2>
+            <p className="text-2xl guarantee-text">
+              Если после прохождения курса вы не станете настолько глупым, как Абдра, 
+              мы вернём вам двойную цену курса! (Но вы всё равно останетесь глупым)
+            </p>
+          </div>
+
+          {/* Huge Bottom Button */}
+          <div className="mt-24 mb-20 relative w-[200vw] -ml-[50vw] overflow-visible">
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 rounded-[200px] blur-3xl opacity-50 animate-pulse"></div>
+            <a 
+              href="https://t.me/abdraebuchii" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="relative inline-block bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 text-black text-8xl font-bold py-20 px-40 rounded-[200px] hover:scale-110 transition-all duration-300 shadow-[0_0_100px_rgba(255,215,0,0.8)] hover:shadow-[0_0_200px_rgba(255,215,0,1)] animate-gradient-x font-burned transform hover:rotate-2 whitespace-nowrap cursor-pointer"
+            >
+              СТАТЬ АБДРОЙ! 🧠 СТАТЬ АБДРОЙ! 🧠 СТАТЬ АБДРОЙ! 🧠
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+
+      {/* Offer Modal */}
+      <OfferModal isOpen={isOfferOpen} onClose={() => setIsOfferOpen(false)} />
+    </main>
   );
 }
