@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from "react";
-import Image from "next/image";
 import OfferModal from "./components/OfferModal";
 
 export default function Home() {
